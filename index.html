@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر عسل مسك - أجود انواع العسل الطبيعي</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #D4AF37;       /* ذهبي فاخر */
+            --primary-dark: #B38F23;  /* ذهبي داكن */
+            --accent: #E67E22;        /* برتقالي دافئ (عسلي) */
+            --bg-dark: #121212;       /* خلفية داكنة */
+            --bg-card: #1E1E1E;       /* خلفية الكروت */
+            --text-light: #F5F5F7;    /* نص أبيض ناعم */
+            --text-muted: #A0A0A0;    /* نص رمادي */
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header / Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 5% 60px;
+            background: radial-gradient(circle at center, rgba(230, 126, 34, 0.12) 0%, rgba(18, 18, 18, 1) 70%);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #FFF 30%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #000;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 14px 38px;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(230, 126, 34, 0.3);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(230, 126, 34, 0.5);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 100px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: #2a2a2a;
+        }
+
+        .product-info {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .btn-buy {
+            background: #25D366;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-buy:hover {
+            background: #1da851;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.3rem; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">
+            <i class="fa-solid fa-jar"></i>
+            <span>مسك</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#about">عن مسك</a></li>
+                <li><a href="#shop">المتجر</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">طبيعي 100% ورائع المذاق</span>
+            <h1>عسل مسك.. نقاء الطبيعة في كل قطرة</h1>
+            <p>نقدم لك أجود أنواع العسل الطبيعي والمكملات المستخرجة بعناية فائقة لضمان أعلى مستويات الجودة والفوائد الغذائية.</p>
+            <button class="btn-primary" onclick="scrollToShop()">
+                <span>تصفح المتجر</span>
+                <i class="fa-solid fa-arrow-down"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="about">
+        <div class="feature-card">
+            <i class="fa-solid fa-leaf feature-icon"></i>
+            <h3>طبيعي ونقي</h3>
+            <p>عسل خالي تماماً من أي إضافات أو معالجات كيميائية.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa-solid fa-award feature-icon"></i>
+            <h3>جودة مضمونة</h3>
+            <p>مفحوص ومضمون لأعلى معايير الجودة والنقاء.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa-solid fa-truck-fast feature-icon"></i>
+            <h3>توصيل سريع</h3>
+            <p>نصلك أينما كنت بأمان وسرعة عالية.</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="shop">
+        <div class="section-title">
+            <h2>تشكيلة عسل مسك</h2>
+            <p>اختر نوعك المفضل واطلبه مباشرة عبر الواتساب</p>
+        </div>
+
+        <div class="products-grid" id="products-container">
+            <!-- المنتجات الـ 9 بدعم صور عسل طبيعي ومضمونة -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 متجر عسل مسك - جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ==========================================
+        // 1. ضَع رقم الواتساب الخاص بك هنا (بدون +)
+        // ==========================================
+        const MERCHANT_WHATSAPP_NUMBER = "201000000000";
+
+        // ==========================================
+        // 2. قائمة المنتجات بالروابط المباشرة لصور عسل طبيعية 100%
+        // ==========================================
+        const products = [
+            {
+                id: 1,
+                name: "عسل برسيم بيور",
+                desc: "عسل طبيعي صافي مئة بالمئة يتميز بطعمه الخفيف واللطيف ومناسب جداً للاستخدام اليومي للأطفال والكبار.",
+                price: "200 ج.م",
+                image: "clover.jpg",
+                fallbackImg: "https://images.unsplash.com/photo-1587049352847-4a222e784d38?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 2,
+                name: "عسل موالح بيور",
+                desc: "مستخلص من زهور أشجار الموالح والحمضيات، غني بفيتامين C وطعمه المنعش الرائع.",
+                price: "220 ج.م",
+                image: "citrus.jpg",
+                fallbackImg: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 3,
+                name: "شمع عسل",
+                desc: "أقراص شمع العسل الطبيعي الخام كما جناه النحل من الخلية بكامل فوائده وانزيماته وصمغ النحل.",
+                price: "300 ج.م",
+                image: "wax.jpg",
+                fallbackImg: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 4,
+                name: "عسل بالمكسرات",
+                desc: "مزيج فاخر من أجود أنواع العسل الطبيعي مغمور بتشكيلة ممتازة من المكسرات الطازجة لمنحك الطاقة والحيوية.",
+                price: "350 ج.م",
+                image: "nuts.jpg",
+                fallbackImg: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 5,
+                name: "عسل سدر جبلي",
+                desc: "أجود وأنقى أنواع العسل الجبلي ذو القيمة الغذائية والعلاجية العالية المتميزة برائحته وقوامه الثقيل.",
+                price: "450 ج.م",
+                image: "sider.jpg",
+                fallbackImg: "https://images.unsplash.com/photo-1471943311424-646960669fbc?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 6,
+                name: "عسل حبة البركة",
+                desc: "عسل مستخلص من الرحيق الصافي لزهور حبة البركة، ممتاز جداً لتعزيز المناعة وتقوية الجسم.",
+                price: "280 ج.م",
+                image: "blackseed.jpg",
+                fallbackImg: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 7,
+                name: "عسل موز",
+                desc: "نوع نادر ومميز جداً يستخلصه النحل من أزهار الموز، له مذاق فريد ونكهة استثنائية ممتازة للأطفال.",
+                price: "260 ج.م",
+                image: "banana.jpg",
+                fallbackImg: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 8,
+                name: "الخلطة السحرية",
+                desc: "تركيبة مسك الخاصة القوية جداً التي تجمع بين العسل الجبلي وغذاء الملكات وحبوب اللقاح والجينسينج لرفع الطاقة والتركيز.",
+                price: "500 ج.م",
+                image: "magic.jpg",
+                fallbackImg: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 9,
+                name: "أكياس عسل غذاء ملكات",
+                desc: "عبوات وأكياس عملية وجاهزة تحتوي على عسل طبيعي مدعم بجرعة مركزة من غذاء ملكات النحل لسريعة الامتصاص الاستخدام.",
+                price: "320 ج.م",
+                image: "royal.jpg",
+                fallbackImg: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        // دالة التنقل السلس
+        function scrollToShop() {
+            document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // عرض المنتجات الـ 9
+        const container = document.getElementById('products-container');
+
+        products.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+
+            const message = encodeURIComponent(`مرحباً متجر مسك، أود شراء: ${product.name} بسعر ${product.price}`);
+            const whatsappUrl = `https://wa.me/${MERCHANT_WHATSAPP_NUMBER}?text=${message}`;
+
+            card.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="product-img" onerror="this.onerror=null; this.src='${product.fallbackImg}';">
+                <div class="product-info">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="product-desc">${product.desc}</p>
+                    <div class="product-footer">
+                        <span class="product-price">${product.price}</span>
+                        <a href="${whatsappUrl}" target="_blank" class="btn-buy">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <span>شراء الآن</span>
+                        </a>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>
