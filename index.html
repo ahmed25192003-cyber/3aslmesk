@@ -254,8 +254,39 @@
         .product-desc {
             color: var(--text-muted);
             font-size: 0.9rem;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             flex-grow: 1;
+        }
+
+        /* تنسيق قائمة الخيارات */
+        .product-options {
+            margin-bottom: 15px;
+        }
+
+        .product-options label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .product-select {
+            width: 100%;
+            padding: 8px 12px;
+            background: #2A2A2A;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .product-select:focus {
+            border-color: var(--primary);
         }
 
         .product-footer {
@@ -362,7 +393,7 @@
         </div>
 
         <div class="products-grid" id="products-container">
-            <!-- المنتجات الـ 9 بدعم صور عسل طبيعي ومضمونة -->
+            <!-- يتم توليد المنتجات ديناميكياً بواسطة JavaScript -->
         </div>
     </section>
 
@@ -374,12 +405,12 @@
     <!-- JavaScript -->
     <script>
         // ==========================================
-        // 1. ضَع رقم الواتساب الخاص بك هنا (بدون +)
+        // 1. رقم الواتساب المحدث للمتجر
         // ==========================================
-        const MERCHANT_WHATSAPP_NUMBER = "201000000000";
+        const MERCHANT_WHATSAPP_NUMBER = "201025479220";
 
         // ==========================================
-        // 2. قائمة المنتجات بالروابط المباشرة لصور عسل طبيعية 100%
+        // 2. قائمة المنتجات
         // ==========================================
         const products = [
             {
@@ -401,21 +432,44 @@
             {
                 id: 3,
                 name: "شمع عسل",
-                desc: "أقراص شمع العسل الطبيعي الخام كما جناه النحل من الخلية بكامل فوائده وانزيماته وصمغ النحل.",
-                price: "300 ج.م",
+                desc: "أقراص شمع العسل الطبيعي الخام بكامل فوائده وإنزيماته. اختر الوزن والنوع المناسب لك.",
+                price: "160 ج.م",
+                options: [
+                    { label: "شمع عادي - نصف كيلو", price: "160 ج.م" },
+                    { label: "شمع عادي - كيلو", price: "300 ج.م" },
+                    { label: "شمع عسل براويز - كيلو", price: "350 ج.م" }
+                ],
                 image: "wax.jpg",
                 fallbackImg: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80"
             },
             {
                 id: 4,
+                name: "شمع عسل مختوم",
+                desc: "أجود أنواع شمع العسل المختوم طبيعياً بالكامل من النحل لمافظة أعلى على الإنزيمات والفوائد. متوفر بالمختوم العادي والفلسطيني.",
+                price: "200 ج.م",
+                options: [
+                    { label: "شمع مختوم عادي - نصف كيلو", price: "200 ج.م" },
+                    { label: "شمع مختوم عادي - كيلو", price: "380 ج.م" },
+                    { label: "شمع مختوم فلسطيني - نصف كيلو", price: "220 ج.م" },
+                    { label: "شمع مختوم فلسطيني - كيلو", price: "400 ج.م" }
+                ],
+                image: "sealed_wax.jpg",
+                fallbackImg: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 5,
                 name: "عسل بالمكسرات",
                 desc: "مزيج فاخر من أجود أنواع العسل الطبيعي مغمور بتشكيلة ممتازة من المكسرات الطازجة لمنحك الطاقة والحيوية.",
-                price: "350 ج.م",
+                price: "190 ج.م",
+                options: [
+                    { label: "نصف كيلو", price: "190 ج.م" },
+                    { label: "كيلو", price: "350 ج.م" }
+                ],
                 image: "nuts.jpg",
                 fallbackImg: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?auto=format&fit=crop&w=600&q=80"
             },
             {
-                id: 5,
+                id: 6,
                 name: "عسل سدر جبلي",
                 desc: "أجود وأنقى أنواع العسل الجبلي ذو القيمة الغذائية والعلاجية العالية المتميزة برائحته وقوامه الثقيل.",
                 price: "450 ج.م",
@@ -423,15 +477,23 @@
                 fallbackImg: "https://images.unsplash.com/photo-1471943311424-646960669fbc?auto=format&fit=crop&w=600&q=80"
             },
             {
-                id: 6,
+                id: 7,
                 name: "عسل حبة البركة",
                 desc: "عسل مستخلص من الرحيق الصافي لزهور حبة البركة، ممتاز جداً لتعزيز المناعة وتقوية الجسم.",
                 price: "280 ج.م",
                 image: "blackseed.jpg",
-                fallbackImg: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80"
+                fallbackImg: "https://images.unsplash.com/photo-1587049352847-4a222e784d38?auto=format&fit=crop&w=600&q=80"
             },
             {
-                id: 7,
+                id: 8,
+                name: "عسل بردقوش",
+                desc: "مستخلص من زهور نبات البردقوش العطري، يتميز بفوائده المذهلة للجهاز الهضمي والتهدئة والاسترخاء.",
+                price: "250 ج.م",
+                image: "marjoram.jpg",
+                fallbackImg: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 9,
                 name: "عسل موز",
                 desc: "نوع نادر ومميز جداً يستخلصه النحل من أزهار الموز، له مذاق فريد ونكهة استثنائية ممتازة للأطفال.",
                 price: "260 ج.م",
@@ -439,7 +501,7 @@
                 fallbackImg: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80"
             },
             {
-                id: 8,
+                id: 10,
                 name: "الخلطة السحرية",
                 desc: "تركيبة مسك الخاصة القوية جداً التي تجمع بين العسل الجبلي وغذاء الملكات وحبوب اللقاح والجينسينج لرفع الطاقة والتركيز.",
                 price: "500 ج.م",
@@ -447,7 +509,7 @@
                 fallbackImg: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80"
             },
             {
-                id: 9,
+                id: 11,
                 name: "أكياس عسل غذاء ملكات",
                 desc: "عبوات وأكياس عملية وجاهزة تحتوي على عسل طبيعي مدعم بجرعة مركزة من غذاء ملكات النحل لسريعة الامتصاص الاستخدام.",
                 price: "320 ج.م",
@@ -461,14 +523,30 @@
             document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // عرض المنتجات الـ 9
+        // عرض المنتجات
         const container = document.getElementById('products-container');
 
         products.forEach(product => {
             const card = document.createElement('div');
             card.className = 'product-card';
 
-            const message = encodeURIComponent(`مرحباً متجر مسك، أود شراء: ${product.name} بسعر ${product.price}`);
+            // إذا كان المنتج يحتوي على خيارات متعددة
+            let optionsHTML = '';
+            if (product.options && product.options.length > 0) {
+                optionsHTML = `
+                    <div class="product-options">
+                        <label for="select-${product.id}">اختر الحجم / النوع:</label>
+                        <select id="select-${product.id}" class="product-select" onchange="updateProductDetails(${product.id})">
+                            ${product.options.map((opt, index) => `<option value="${index}">${opt.label} -${opt.price}</option>`).join('')}
+                        </select>
+                    </div>
+                `;
+            }
+
+            const initialOption = product.options ? ` (${product.options[0].label})` : '';
+            const initialPrice = product.options ? product.options[0].price : product.price;
+
+            const message = encodeURIComponent(`مرحباً متجر مسك، أود شراء: ${product.name}${initialOption} بسعر ${initialPrice}`);
             const whatsappUrl = `https://wa.me/${MERCHANT_WHATSAPP_NUMBER}?text=${message}`;
 
             card.innerHTML = `
@@ -476,9 +554,10 @@
                 <div class="product-info">
                     <h3 class="product-title">${product.name}</h3>
                     <p class="product-desc">${product.desc}</p>
+                    ${optionsHTML}
                     <div class="product-footer">
-                        <span class="product-price">${product.price}</span>
-                        <a href="${whatsappUrl}" target="_blank" class="btn-buy">
+                        <span class="product-price" id="price-${product.id}">${initialPrice}</span>
+                        <a href="${whatsappUrl}" target="_blank" class="btn-buy" id="btn-${product.id}">
                             <i class="fa-brands fa-whatsapp"></i>
                             <span>شراء الآن</span>
                         </a>
@@ -487,6 +566,23 @@
             `;
             container.appendChild(card);
         });
+
+        // دالة تحديث السعر ورابط الواتساب عند تغيير الخيار من القائمة
+        function updateProductDetails(productId) {
+            const product = products.find(p => p.id === productId);
+            const select = document.getElementById(`select-${productId}`);
+            const selectedOption = product.options[select.value];
+
+            const priceSpan = document.getElementById(`price-${productId}`);
+            const buyBtn = document.getElementById(`btn-${productId}`);
+
+            // تحديث السعر المعروض
+            priceSpan.innerText = selectedOption.price;
+
+            // تحديث رابط الواتساب بالخيار الجديد والسعر الجديد
+            const message = encodeURIComponent(`مرحباً متجر مسك، أود شراء: ${product.name} (${selectedOption.label}) بسعر ${selectedOption.price}`);
+            buyBtn.href = `https://wa.me/${MERCHANT_WHATSAPP_NUMBER}?text=${message}`;
+        }
     </script>
 </body>
 </html>
